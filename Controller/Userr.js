@@ -6,7 +6,7 @@ const JWT_SECRET = 'your_secret_key';
 
 // SIGN UP
 export const signUp = async (req, res) => {
-  const { name, email, password, SocketID } = req.body;
+  const { username, email, password, SocketID } = req.body;
   console.log(req.body);
 
   try {
@@ -17,7 +17,7 @@ export const signUp = async (req, res) => {
 
 
     const newUser = await User.create({
-      name,
+      username,
       email,
       password,
       SocketID
