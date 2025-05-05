@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 import USER from './Model/User.js'
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://yugpatel5880:yugpatel4545@cluster0.j3rq9pd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://yugpatel5880:yugpatel4545@cluster0.j3rq9pd.mongodb.net/DeepChat?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(() => console.log('❌ Not connected to MongoDB'));
 
