@@ -33,7 +33,7 @@ export const signUp = async (req, res) => {
       }
     );
   } catch (err) {
-    res.status(500).json({ error: 'Something went wrong', details: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
