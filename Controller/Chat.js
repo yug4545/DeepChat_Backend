@@ -52,12 +52,6 @@ export const CreateChat = async (req, res) => {
         minute: '2-digit',
         hour12: true,
         timeZone: 'Asia/Kolkata',
-      }),
-      date: now.toLocaleDateString('en-IN', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-        timeZone: 'Asia/Kolkata',
       })
     };
 
