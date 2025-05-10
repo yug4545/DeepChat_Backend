@@ -71,7 +71,6 @@ export const CreateChat = async (req, res) => {
       sender,
       receiver,
       messages: [message],
-      date
     });
 
     const savedChat = await newChat.save();
