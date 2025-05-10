@@ -55,6 +55,7 @@ io.on('connection', (socket) => {
     // Send to the specific receiver's 
     io.to(receiver).emit("receive-message", {
       sender,
+      receiver,
       messages,
       time
     });
