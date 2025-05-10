@@ -42,19 +42,23 @@ export const CreateChat = async (req, res) => {
       ]
     });
 
+    const now = new Date();
     const message = {
-      sender,
-      messages: text,
-      time: new Date().toLocaleString('en-IN', {
-        timeZone: 'Asia/Kolkata',
+      sender: LoginUser?._id,
+      receiver: selectedUser?._id,
+      text,
+      time: now.toLocaleTimeString('en-IN', {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true,
+        timeZone: 'Asia/Kolkata',
+      }),
+      date: now.toLocaleDateString('en-IN', {
         day: '2-digit',
         month: 'short',
         year: 'numeric',
-      }),
-        read: false
+        timeZone: 'Asia/Kolkata',
+      })
     };
 
     if (chat) {
