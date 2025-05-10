@@ -46,7 +46,7 @@ export const CreateChat = async (req, res) => {
     const message = {
       sender: LoginUser?._id,
       receiver: selectedUser?._id,
-      text,
+      messages:text,
       time: now.toLocaleTimeString('en-IN', {
         hour: '2-digit',
         minute: '2-digit',
