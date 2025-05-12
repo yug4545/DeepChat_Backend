@@ -39,20 +39,20 @@ const io = new Server(server, {
 
 const onlineUsers = new Map(); // Keeps track of userId <-> socketId
 
-io.on('connection',(socket) => {
+io.on('connection', (socket) => {
   console.log(`🔌 User connected: ${socket.id}`);
 
   socket.emit('Welcome', socket.id);
 
   socket.on("join", async (userId) => {
-     try {
+    try {
       socket.join(userId);
       onlineUsers.set(userId, socket.id);
       console.log(`✅ User ${userId} joined their personal room`);
 
       // Notify others (optional)
       socket.broadcast.emit('user-online', { userId, isOnline: true });
-      
+
       // Mark user as online in DB
       await USER.findByIdAndUpdate(
         userId,
@@ -78,8 +78,15 @@ io.on('connection',(socket) => {
     });
   });
 
-  socket.on('disconnect', async () => {
+  socket.on('disconnect', async (userId) => {
 
+    socket.broadcast.emit('user-online', { userId, isOnline: false });
+
+    await USER.findByIdAndUpdate(
+      userId,
+      { isOnline: false },
+      { new: true }
+    );
     console.log(`❌ User disconnected`);
 
   });
