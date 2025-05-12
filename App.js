@@ -78,17 +78,29 @@ io.on('connection', (socket) => {
     });
   });
 
-  socket.on('disconnect', async (userId) => {
+  socket.on('disconnect', async () => {
+    try {
+      for (const [userId, id] of onlineUsers.entries()) {
+        if (id === socket.id) {
+          onlineUsers.delete(userId);
+          console.log(`❌ User ${userId} disconnected`);
 
-    socket.broadcast.emit('user-online', { userId, isOnline: false });
+          // Notify others
+          socket.broadcast.emit('user-online', { userId, isOnline: false });
 
-    await USER.findByIdAndUpdate(
-      userId,
-      { isOnline: false },
-      { new: true }
-    );
-    console.log(`❌ User disconnected`);
+          await USER.findByIdAndUpdate(
+            userId,
+            { isOnline: false },
+            { new: true }
+          );
 
+
+          break;
+        }
+      }
+    } catch (error) {
+      console.error(`⚠️ Error on disconnect:`, error.message);
+    }
   });
 });
 
