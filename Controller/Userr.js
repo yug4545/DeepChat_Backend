@@ -41,13 +41,6 @@ export const signUp = async (req, res) => {
 export const login = async (req, res) => {
   const { EmailorUsername, password } = req.body;
 
-  let username = "";
-  let email = EmailorUsername.includes('@');
-
-  if (condition) {
-    username = EmailorUsername;
-  }
-
   try {
     const user = await User.findOne({
       $or: [
