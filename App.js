@@ -18,7 +18,7 @@ const port = 3000;
 // Middleware
 app.use(Express.json());
 app.use(cors({
-  origin: 'https://deep-chat-beta.vercel.app',
+  origin: ['http://localhost:3000','https://deep-chat-beta.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
